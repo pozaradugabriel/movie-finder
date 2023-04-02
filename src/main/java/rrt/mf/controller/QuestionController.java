@@ -1,14 +1,11 @@
 package rrt.mf.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import rrt.mf.model.Movie;
+import org.springframework.web.bind.annotation.*;
 import rrt.mf.model.Question;
-import rrt.mf.service.MovieService;
 import rrt.mf.service.QuestionService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path="/questions")
@@ -21,5 +18,13 @@ public class QuestionController {
     @GetMapping
     public List<Question> getAllQuestions(){
         return questionService.showAllQuestions();
+    }
+    @PostMapping("/add")
+    public void addQuestion(@RequestBody Question question){
+        questionService.addQuestion(question);
+    }
+    @GetMapping(path="/{id}")
+    public Optional<Question> getQuestion(@PathVariable Integer id){
+        return questionService.showQuestionByID(id);
     }
 }

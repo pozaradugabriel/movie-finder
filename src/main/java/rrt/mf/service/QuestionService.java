@@ -1,11 +1,11 @@
 package rrt.mf.service;
 
 import org.springframework.stereotype.Service;
-import rrt.mf.model.Movie;
 import rrt.mf.model.Question;
 import rrt.mf.repository.QuestionRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestionService {
@@ -21,8 +21,11 @@ public class QuestionService {
         }
         else return null;
     }
-
     public List<Question> showAllQuestions(){
         return questionRepository.findAll();
+    }
+
+    public Optional<Question> showQuestionByID(Integer id){
+        return questionRepository.findById(id);
     }
 }
