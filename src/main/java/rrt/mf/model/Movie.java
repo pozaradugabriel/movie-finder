@@ -7,11 +7,6 @@ import jakarta.persistence.*;
 public class Movie {
 
     @Id
-    @SequenceGenerator(name="movie_sequence", allocationSize = 1)
-    @GeneratedValue(
-            generator = "movie_sequence",
-            strategy = GenerationType.SEQUENCE
-    )
     private Long id;
     private String title;
     private String genres;
