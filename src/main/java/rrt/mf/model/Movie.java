@@ -14,9 +14,10 @@ public class Movie {
     private Long id;
     private String title;
     private String genres;
+    private float avgRating;
     private String mainActor;
     private String creator;
-    private float avgRating;
+    private int year;
 
     public Movie(){
 
@@ -75,6 +76,13 @@ public class Movie {
 
     public Long getID() {
         return id;
+    }
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     @Override

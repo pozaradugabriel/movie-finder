@@ -13,6 +13,11 @@ public class MovieService {
     private MovieRepository movieRepository;
     private List<Movie> filteredListByGenres = new ArrayList<Movie>();
     private List<Movie> filteredListByRatings = new ArrayList<Movie>();
+    private List<Movie> filteredListByYear = new ArrayList<Movie>();
+    private List<Movie> filteredListByMainActor = new ArrayList<Movie>();
+
+
+
 
 
 
@@ -32,24 +37,42 @@ public class MovieService {
 
     public List<Movie> filterByGenre(String genre){
         List<Movie> allMovies = movieRepository.findAll();
-        for(int i=0; i < allMovies.size(); i++){
-            Movie m;
-            m = allMovies.get(i);
-            if(m.getGenres().contains(genre)){
-                filteredListByGenres.add(m);
+        for (Movie movie : allMovies) {
+            if (movie.getGenres().contains(genre)) {
+                filteredListByGenres.add(movie);
             }
         }
         return filteredListByGenres;
     }
 
     public List<Movie> filterByRating(float rating){
-        for(int i=0; i<filteredListByGenres.size();i++){
-            Movie m;
-            m = filteredListByGenres.get(i);
-            if(m.getAvgRating() >= rating){
-                filteredListByRatings.add(m);
+        for (Movie movie : filteredListByGenres) {
+            if (movie.getAvgRating() >= rating) {
+                filteredListByRatings.add(movie);
             }
         }
         return filteredListByRatings;
+    }
+
+    public List<Movie> filterByYear(int year){
+        for (Movie movie : filteredListByRatings) {
+            if (movie.getYear() >= year) {
+                filteredListByYear.add(movie);
+            }
+        }
+        return filteredListByYear;
+    }
+
+    public List<Movie> filterByMainActor(String mainActor){
+        for (Movie movie : filteredListByYear) {
+            if (movie.getMainActor().contains(mainActor)) {
+                filteredListByMainActor.add(movie);
+            }
+        }
+        return filteredListByMainActor;
+    }
+
+    public Movie showChosenMovie(){
+        return filteredListByMainActor.get(0);
     }
 }

@@ -21,6 +21,7 @@ public class MovieController {
     public List<Movie> getAllMovies(){
         return movieService.showAllMovies();
     }
+
     @GetMapping("/{genre}")
     public List<Movie> getFilteredMoviesByGenre(@PathVariable String genre){
         return movieService.filterByGenre(genre);
@@ -29,5 +30,18 @@ public class MovieController {
     @GetMapping("/{rating}")
     public List<Movie> getFilteredMoviesByGenre(@PathVariable float rating){
         return movieService.filterByRating(rating);
+    }
+    @GetMapping("/{year}")
+    public List<Movie> getFilteredMoviesByYear(@PathVariable int year){
+        return movieService.filterByYear(year);
+    }
+    @GetMapping("/{mainActor}")
+    public List<Movie> getFilteredMoviesByYear(@PathVariable String mainActor){
+        return movieService.filterByMainActor(mainActor);
+    }
+
+    @GetMapping("/end")
+    public Movie getChosenMovie(){
+        return movieService.showChosenMovie();
     }
 }
